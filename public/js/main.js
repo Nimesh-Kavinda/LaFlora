@@ -102,3 +102,6 @@ if (document.querySelector('.about-img-animate')) {
     }
   });
 })();
+
+// --- SHOP PAGE LOGIC ---
+// All JS product rendering, search, and filter logic removed as requested.
