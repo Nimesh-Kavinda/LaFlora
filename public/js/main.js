@@ -49,3 +49,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
   resetInterval();
 })();
+
+// Animate About page images on scroll into view
+function animateAboutImages() {
+  const imgs = document.querySelectorAll('.about-img-animate');
+  imgs.forEach(img => {
+    const rect = img.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 40) {
+      img.classList.add('about-img-animate');
+    }
+  });
+}
+if (document.querySelector('.about-img-animate')) {
+  window.addEventListener('scroll', animateAboutImages);
+  window.addEventListener('DOMContentLoaded', animateAboutImages);
+}
+
+// About page single image hover effect
+(function() {
+  const wrapper = document.querySelector('.about-img-single-wrapper');
+  if (!wrapper) return;
+  wrapper.addEventListener('mouseenter', function() {
+    wrapper.classList.add('hovered');
+  });
+  wrapper.addEventListener('mouseleave', function() {
+    wrapper.classList.remove('hovered');
+  });
+})();
