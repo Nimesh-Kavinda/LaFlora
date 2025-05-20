@@ -1,0 +1,100 @@
+/* main.css - Custom styles for LaFlora */
+
+:root {
+  --laflora-primary: #e75480;
+  --laflora-secondary: #4caf50;
+  --laflora-bg: #fff8f9;
+  --laflora-dark: #222;
+}
+
+body {
+  background: var(--laflora-bg);
+  color: var(--laflora-dark);
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.navbar-brand {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
+  color: var(--laflora-primary) !important;
+  letter-spacing: 2px;
+}
+
+.btn-laflora {
+  background: var(--laflora-primary);
+  color: #fff;
+  border-radius: 30px;
+  padding: 0.5rem 2rem;
+  transition: background 0.2s;
+}
+.btn-laflora:hover {
+  background: var(--laflora-secondary);
+  color: #fff;
+}
+
+.hero-section {
+  background: linear-gradient(120deg, #ffe0ec 0%, #e0ffe8 100%);
+  padding: 5rem 0 3rem 0;
+  text-align: center;
+}
+.hero-section h1 {
+  font-size: 3rem;
+  color: var(--laflora-primary);
+  font-family: 'Pacifico', cursive;
+}
+.hero-section p {
+  font-size: 1.25rem;
+  color: var(--laflora-dark);
+}
+
+.product-card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 2px 16px rgba(231,84,128,0.08);
+  transition: transform 0.2s;
+  background: #fff;
+}
+.product-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 4px 24px rgba(76,175,80,0.12);
+}
+.product-card .card-title {
+  color: var(--laflora-primary);
+  font-weight: 600;
+}
+.product-card .card-text {
+  color: var(--laflora-dark);
+}
+
+.footer {
+  background: var(--laflora-primary);
+  color: #fff;
+  padding: 2rem 0 1rem 0;
+}
+.footer a {
+  color: #fff;
+  text-decoration: underline;
+}
+.footer .footer-logo {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.5rem;
+  color: #fff;
+}
+.footer .social-icons a {
+  color: #fff;
+  margin: 0 0.5rem;
+  font-size: 1.2rem;
+  transition: color 0.2s;
+}
+.footer .social-icons a:hover {
+  color: var(--laflora-secondary);
+}
+
+@media (max-width: 767px) {
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+  .product-card {
+    margin-bottom: 2rem;
+  }
+}
