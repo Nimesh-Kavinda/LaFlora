@@ -141,6 +141,28 @@ body {
   color: #ffe0ec;
 }
 
+/* Improve Contact Page Social Icon Visibility */
+.contact-social .footer-social {
+  color: var(--laflora-primary);
+  background: #fff;
+  border: 2px solid var(--laflora-primary);
+  border-radius: 50%;
+  padding: 0.45rem;
+  margin-right: 0.7rem;
+  font-size: 1.4rem;
+  transition: color 0.2s, background 0.2s, border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px #e7548033;
+}
+.contact-social .footer-social:last-child {
+  margin-right: 0;
+}
+.contact-social .footer-social:hover {
+  color: #fff;
+  background: var(--laflora-primary);
+  border-color: var(--laflora-primary);
+  box-shadow: 0 4px 16px #e7548077;
+}
+
 /* Image Slider Styles */
 .image-slider-container {
   position: relative;
@@ -525,5 +547,116 @@ body {
   .about-img {
     width: 70px;
     height: 70px;
+  }
+}
+
+/* Contact Us Page Styles */
+.contact-hero-section {
+  background: linear-gradient(120deg, #ffe0ec 0%, #e0ffe8 100%);
+  border-radius: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+.contact-title {
+  color: var(--laflora-primary);
+  font-family: 'Pacifico', cursive;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+.contact-desc {
+  font-size: 1.18rem;
+  color: var(--laflora-dark);
+  line-height: 1.7;
+}
+.contact-details li, .contact-link {
+  font-size: 1.08rem;
+  color: var(--laflora-dark);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.contact-link:hover {
+  color: var(--laflora-primary);
+  text-decoration: underline;
+}
+.contact-social .footer-social {
+  color: var(--laflora-primary);
+  background: #fff;
+  border: 2px solid var(--laflora-primary);
+  border-radius: 50%;
+  padding: 0.45rem;
+  margin-right: 0.7rem;
+  font-size: 1.4rem;
+  transition: color 0.2s, background 0.2s, border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px #e7548033;
+}
+.contact-social .footer-social:last-child {
+  margin-right: 0;
+}
+.contact-social .footer-social:hover {
+  color: #fff;
+  background: var(--laflora-primary);
+  border-color: var(--laflora-primary);
+  box-shadow: 0 4px 16px #e7548077;
+}
+.contact-form-card {
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 16px rgba(231,84,128,0.10);
+  border: 1.5px solid #ffe0ec;
+}
+.contact-input {
+  border-radius: 0.7rem;
+  border: 1.5px solid #ffe0ec;
+  font-size: 1.08rem;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.5rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.contact-input:focus {
+  border-color: var(--laflora-primary);
+  box-shadow: 0 0 0 2px #e7548033;
+}
+#contactSuccess {
+  font-size: 1.08rem;
+  border-radius: 0.7rem;
+  background: #e0ffe8;
+  color: var(--laflora-secondary);
+  border: 1.5px solid #4caf50;
+}
+
+/* Contact Page Map Section */
+.contact-map-section {
+  background: #fff8f9;
+  border-radius: 1.5rem;
+  margin-bottom: 2rem;
+}
+.map-embed-wrapper {
+  border-radius: 1.2rem;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(231,84,128,0.10);
+  border: 1.5px solid #ffe0ec;
+}
+.contact-map-iframe {
+  width: 100%;
+  height: 340px;
+  border: none;
+  display: block;
+}
+@media (max-width: 900px) {
+  .contact-map-iframe {
+    height: 220px;
+  }
+}
+@media (max-width: 600px) {
+  .contact-map-section {
+    border-radius: 0.7rem;
+    padding: 0.7rem 0;
+  }
+  .map-embed-wrapper {
+    border-radius: 0.7rem;
+  }
+  .contact-map-iframe {
+    height: 120px;
   }
 }
