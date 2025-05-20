@@ -76,3 +76,29 @@ if (document.querySelector('.about-img-animate')) {
     wrapper.classList.remove('hovered');
   });
 })();
+
+// Contact form validation and success message
+(function() {
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('contactSuccess');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    let valid = true;
+    form.querySelectorAll('.contact-input').forEach(input => {
+      if (!input.value.trim()) {
+        input.classList.add('is-invalid');
+        valid = false;
+      } else {
+        input.classList.remove('is-invalid');
+      }
+    });
+    if (valid) {
+      form.reset();
+      if (success) {
+        success.classList.remove('d-none');
+        setTimeout(() => success.classList.add('d-none'), 3500);
+      }
+    }
+  });
+})();
