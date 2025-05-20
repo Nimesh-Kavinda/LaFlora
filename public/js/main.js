@@ -105,3 +105,31 @@ if (document.querySelector('.about-img-animate')) {
 
 // --- SHOP PAGE LOGIC ---
 // All JS product rendering, search, and filter logic removed as requested.
+
+// Wishlist page: Remove item, move to cart, and clear all (UI only, demo)
+document.addEventListener('DOMContentLoaded', function() {
+  const wishlistGrid = document.getElementById('wishlistGrid');
+  const clearBtn = document.getElementById('clearWishlist');
+  if (wishlistGrid) {
+    wishlistGrid.addEventListener('click', function(e) {
+      if (e.target.closest('.delete-wishlist')) {
+        const card = e.target.closest('.col-md-6, .col-lg-4, .col-xl-3');
+        if (card) card.remove();
+      }
+      if (e.target.closest('.move-to-cart')) {
+        const btn = e.target.closest('.move-to-cart');
+        btn.innerHTML = '<i class="fa fa-check me-1"></i> Moved!';
+        btn.disabled = true;
+        setTimeout(() => {
+          const card = btn.closest('.col-md-6, .col-lg-4, .col-xl-3');
+          if (card) card.remove();
+        }, 900);
+      }
+    });
+  }
+  if (clearBtn && wishlistGrid) {
+    clearBtn.addEventListener('click', function() {
+      wishlistGrid.innerHTML = '<div class="col-12 text-center text-muted py-5">No items in your wishlist.</div>';
+    });
+  }
+});
