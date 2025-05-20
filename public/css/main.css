@@ -66,28 +66,79 @@ body {
   color: var(--laflora-dark);
 }
 
+/* Footer Styles - reduced height and slightly increased color contrast */
 .footer {
-  background: var(--laflora-primary);
+  background: linear-gradient(120deg, #f48fb1 60%, #81c784 100%); /* Slightly more contrast, but still soft */
   color: #fff;
-  padding: 2rem 0 1rem 0;
+  box-shadow: 0 -2px 24px rgba(231,84,128,0.10);
+  font-family: 'Quicksand', 'Montserrat', Arial, sans-serif;
+  padding: 1.3rem 0 0.5rem 0; /* Reduced height */
+  border-top-right-radius: 5rem;
+  border-top-left-radius: 0;
+  margin-top: 4rem;
+  position: relative;
+  overflow: hidden;
 }
-.footer a {
+.footer-logo {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
+  letter-spacing: 2px;
   color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-shadow: 0 2px 8px #e7548055;
+}
+.footer-divider {
+  border-left: 1.5px solid #ffe0ec44;
+  height: 100%;
+  margin: 0 1.5rem;
+  display: none;
+}
+@media (min-width: 768px) {
+  .footer-divider {
+    display: block;
+  }
+}
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.footer-link, .footer a {
+  color: #fff;
+  text-decoration: none !important;
+  font-weight: 500;
+  transition: color 0.2s;
+  font-size: 1.05rem;
+}
+.footer-link:hover, .footer a:hover {
+  color: #ffe0ec;
   text-decoration: underline;
 }
-.footer .footer-logo {
-  font-family: 'Pacifico', cursive;
+.footer-social {
+  color: #fff;
+  margin: 0 0.4rem;
   font-size: 1.5rem;
-  color: #fff;
+  transition: color 0.2s, transform 0.2s;
+  display: inline-block;
+  background: rgba(255,255,255,0.10);
+  border-radius: 50%;
+  padding: 0.4rem;
+  box-shadow: 0 2px 8px #b6e2c155;
 }
-.footer .social-icons a {
-  color: #fff;
-  margin: 0 0.5rem;
-  font-size: 1.2rem;
-  transition: color 0.2s;
+.footer-social:hover {
+  color: #ffe0ec;
+  background: rgba(255,255,255,0.18);
+  transform: scale(1.2) rotate(-8deg);
 }
-.footer .social-icons a:hover {
-  color: var(--laflora-secondary);
+.footer-bottom {
+  border-top: 1px solid #ffe0ec33;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  font-size: 0.98rem;
+  text-align: center;
+  color: #ffe0ec;
 }
 
 @media (max-width: 767px) {
