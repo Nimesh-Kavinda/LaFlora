@@ -49,6 +49,19 @@
     transform: translateY(-4px) scale(1.03);
     box-shadow: 0 8px 24px rgba(233,30,99,0.10);
 }
+.btn-theme {
+    background: #e91e63;
+    color: #fff;
+    border-radius: 25px;
+    padding: 10px 25px;
+    border: none;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+.btn-theme:hover, .btn-theme:focus {
+    background: #d81b60;
+    color: #fff;
+}
 @media (max-width: 767px) {
     .admin-sidebar {
         border-radius: 8px 8px 0 0;
