@@ -1,0 +1,59 @@
+/* Admin Dashboard Theme Styles */
+.admin-bg {
+    background: linear-gradient(to right, #ffcdd2, #e1f5fe);
+    min-height: 100vh;
+}
+.admin-sidebar {
+    background: linear-gradient(to bottom, #e91e63, #f48fb1) !important;
+    color: #fff;
+    min-height: 100vh;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.admin-brand {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff !important;
+    letter-spacing: 1px;
+}
+.admin-nav-link {
+    color: #fff !important;
+    border-radius: 0;
+    padding: 12px 20px;
+    margin: 2px 0;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+.admin-nav-link.active, .admin-nav-link:focus, .admin-nav-link:hover {
+    background-color: rgba(255,255,255,0.18) !important;
+    border-left: 4px solid #fff;
+    color: #fff !important;
+}
+.admin-title {
+    color: #e91e63;
+    font-size: 2.2rem;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f8bbd0;
+}
+.admin-card {
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.admin-card:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(233,30,99,0.10);
+}
+@media (max-width: 767px) {
+    .admin-sidebar {
+        border-radius: 8px 8px 0 0;
+    }
+    .admin-title {
+        font-size: 1.5rem;
+    }
+}
