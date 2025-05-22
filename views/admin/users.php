@@ -1,3 +1,42 @@
+<?php
+require_once '../../config/db.php';
+
+$success = '';
+$error = '';
+
+// Handle user type update
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_user_type'], $_POST['user_id'], $_POST['user_type'])) {
+    $user_id = intval($_POST['user_id']);
+    $user_type = $_POST['user_type'] === 'admin' ? 'admin' : 'user';
+    $stmt = $conn->prepare('UPDATE users SET role = :user_type WHERE id = :id');
+    $stmt->bindParam(':user_type', $user_type);
+    $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
+    if ($stmt->execute()) {
+        $success = 'User type updated successfully!';
+    } else {
+        $error = 'Failed to update user type.';
+    }
+}
+
+// Handle user delete
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_user_id'])) {
+    $user_id = intval($_POST['delete_user_id']);
+    $stmt = $conn->prepare('DELETE FROM users WHERE id = :id');
+    $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
+    if ($stmt->execute()) {
+        $success = 'User deleted successfully!';
+    } else {
+        $error = 'Failed to delete user.';
+    }
+}
+
+// Fetch all users
+$users = [];
+$stmt = $conn->query('SELECT id, name, email, role FROM users ORDER BY id ASC');
+if ($stmt) {
+    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +59,17 @@
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h1 class="admin-title mb-0">Users</h1>
                 </div>
+                <?php if ($success): ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <?= htmlspecialchars($success) ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php elseif ($error): ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <?= htmlspecialchars($error) ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php endif; ?>
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover align-middle bg-white user-table">
                         <thead class="table-light">
@@ -32,35 +82,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Jane Doe</td>
-                                <td>jane@example.com</td>
-                                <td>
-                                    <select class="form-select form-select-sm user-type-select">
-                                        <option value="user" selected>User</option>
-                                        <option value="admin">Admin</option>
-                                    </select>
-                                </td>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-sm btn-outline-danger" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>John Smith</td>
-                                <td>john@example.com</td>
-                                <td>
-                                    <select class="form-select form-select-sm user-type-select">
-                                        <option value="user">User</option>
-                                        <option value="admin" selected>Admin</option>
-                                    </select>
-                                </td>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-sm btn-outline-danger" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
-                            <!-- More user rows as needed -->
+                            <?php foreach ($users as $user): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($user['id']) ?></td>
+                                    <td><?= htmlspecialchars($user['name']) ?></td>
+                                    <td><?= htmlspecialchars($user['email']) ?></td>
+                                    <td>
+                                        <form method="POST" class="d-inline">
+                                            <input type="hidden" name="user_id" value="<?= htmlspecialchars($user['id']) ?>">
+                                            <select name="user_type" class="form-select form-select-sm user-type-select" onchange="this.form.submit()">
+                                                <option value="user" <?= $user['role'] === 'user' ? 'selected' : '' ?>>User</option>
+                                                <option value="admin" <?= $user['role'] === 'admin' ? 'selected' : '' ?>>Admin</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                    <td class="text-center">
+                                        <form method="POST" class="d-inline">
+                                            <input type="hidden" name="delete_user_id" value="<?= htmlspecialchars($user['id']) ?>">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete" onclick="return confirm('Are you sure you want to delete this user?')"><i class="fas fa-trash-alt"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
