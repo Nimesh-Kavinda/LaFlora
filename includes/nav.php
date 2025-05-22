@@ -26,9 +26,22 @@
         <li class="nav-item">
           <a class="nav-link" href="./cart.php" title="Cart"><i class="fa-solid fa-cart-shopping"></i></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./signin.php" title="Sign In"><i class="fa-regular fa-user"></i></a>
-        </li>
+        <?php
+            if (isset($_SESSION['name'])) {
+                if ($_SESSION['user_type'] == 'admin') {
+                    echo '<li class="nav-item">
+                            <a class="nav-link" href="./admin/dashboard.php" title="Admin Dashboard"><i class="fa-solid fa-user-shield"></i></a>
+                          </li>';
+                } else
+                echo '<li class="nav-item">
+                        <a class="nav-link" href="./user/profile.php" title="Profile"><i class="fa-regular fa-user"></i></a>
+                      </li>';
+            } else {    
+                echo '<li class="nav-item">
+                        <a class="nav-link" href="./signin.php" title="Sign In"><i class="fa-regular fa-user"></i></a>
+                      </li>';
+            }
+        ?>
       </ul>
     </div>
   </div>

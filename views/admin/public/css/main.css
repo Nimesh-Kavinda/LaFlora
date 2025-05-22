@@ -62,6 +62,35 @@
     background: #d81b60;
     color: #fff;
 }
+/* Product Add Form Styles */
+.product-add-card {
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    padding: 2rem 2.5rem;
+}
+.product-add-card label {
+    color: #e91e63;
+    font-weight: 500;
+}
+.product-add-card .form-control, .product-add-card .form-select {
+    border-radius: 0.7rem;
+    border: 1.5px solid #f8bbd0;
+    font-size: 1.08rem;
+    padding: 0.7rem 1rem;
+    margin-bottom: 0.5rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.product-add-card .form-control:focus, .product-add-card .form-select:focus {
+    border-color: #e91e63;
+    box-shadow: 0 0 0 2px #e91e6333;
+}
+.product-add-card textarea.form-control {
+    min-height: 120px;
+}
+.product-add-card .btn-theme {
+    min-width: 160px;
+}
 @media (max-width: 767px) {
     .admin-sidebar {
         border-radius: 8px 8px 0 0;
@@ -69,4 +98,111 @@
     .admin-title {
         font-size: 1.5rem;
     }
+}
+@media (max-width: 991px) {
+    .product-add-card {
+        padding: 1.2rem 0.7rem;
+    }
+}
+/* Category Table Styles */
+.category-table th, .category-table td {
+    vertical-align: middle;
+    font-size: 1.08rem;
+}
+.category-table th {
+    color: #e91e63;
+    font-weight: 600;
+    background: #f8bbd0 !important;
+    border-bottom: 2px solid #f8bbd0;
+}
+.category-table tr {
+    transition: background 0.15s;
+}
+/* Removed hover effect from category table */
+/* .category-table tbody tr:hover {
+    background: #ffe0ec33;
+} */
+.category-table .btn-outline-primary {
+    border-radius: 20px;
+    font-weight: 500;
+    color: #e91e63;
+    border-color: #e91e63;
+}
+.category-table .btn-outline-primary:hover {
+    background: #e91e63;
+    color: #fff;
+}
+.category-table .btn-outline-danger {
+    border-radius: 20px;
+    font-weight: 500;
+    border-color: #e91e63;
+    color: #e91e63;
+}
+.category-table .btn-outline-danger:hover {
+    background: #e91e63;
+    color: #fff;
+}
+/* User Table Styles */
+.user-table th, .user-table td {
+    vertical-align: middle;
+    font-size: 1.08rem;
+}
+.user-table th {
+    color: #e91e63;
+    font-weight: 600;
+    background: #f8bbd0 !important;
+    border-bottom: 2px solid #f8bbd0;
+}
+.user-table .form-select.user-type-select {
+    border-radius: 0.7rem;
+    border: 1.5px solid #f8bbd0;
+    font-size: 1rem;
+    padding: 0.3rem 0.8rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.user-table .form-select.user-type-select:focus {
+    border-color: #e91e63;
+    box-shadow: 0 0 0 2px #e91e6333;
+}
+.user-table .btn-outline-danger {
+    border-radius: 20px;
+    font-weight: 500;
+    border-color: #e91e63;
+    color: #e91e63;
+}
+.user-table .btn-outline-danger:hover {
+    background: #e91e63;
+    color: #fff;
+}
+/* Order Table Styles */
+.order-table th, .order-table td {
+    vertical-align: middle;
+    font-size: 1.08rem;
+}
+.order-table th {
+    color: #e91e63;
+    font-weight: 600;
+    background: #f8bbd0 !important;
+    border-bottom: 2px solid #f8bbd0;
+}
+.order-table .form-select.order-status-select {
+    border-radius: 0.7rem;
+    border: 1.5px solid #f8bbd0;
+    font-size: 1rem;
+    padding: 0.3rem 0.8rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.order-table .form-select.order-status-select:focus {
+    border-color: #e91e63;
+    box-shadow: 0 0 0 2px #e91e6333;
+}
+.order-table .btn-outline-danger {
+    border-radius: 20px;
+    font-weight: 500;
+    border-color: #e91e63;
+    color: #e91e63;
+}
+.order-table .btn-outline-danger:hover {
+    background: #e91e63;
+    color: #fff;
 }
