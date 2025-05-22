@@ -1,5 +1,33 @@
+<?php
+// Include database connection
+require_once '../../config/db.php';
+
+$success = '';
+$error = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['category_name'])) {
+    $category_name = trim($_POST['category_name']);
+    if (!empty($category_name)) {
+        try {
+            $stmt = $conn->prepare('INSERT INTO category (category_name) VALUES (:name)');
+            $stmt->bindParam(':name', $category_name, PDO::PARAM_STR);
+            if ($stmt->execute()) {
+                $success = 'Category added successfully!';
+            } else {
+                $error = 'Error adding category.';
+            }
+        } catch (PDOException $e) {
+            $error = 'Database error: ' . $e->getMessage();
+        }
+    } else {
+        $error = 'Category name cannot be empty.';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +38,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./public/css/main.css">
 </head>
+
 <body>
     <div class="container-fluid min-vh-100 admin-bg">
         <div class="row h-100">
@@ -24,7 +53,13 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <div class="card admin-card product-add-card shadow-sm border-0 p-4">
+
                             <form method="post" action="">
+                                <?php if (!empty($success)): ?>
+                                    <div class="alert alert-success"><?php echo $success; ?></div>
+                                <?php elseif (!empty($error)): ?>
+                                    <div class="alert alert-danger"><?php echo $error; ?></div>
+                                <?php endif; ?>
                                 <div class="mb-3">
                                     <label for="categoryName" class="form-label">Category Name</label>
                                     <input type="text" class="form-control" id="categoryName" name="category_name" required>
@@ -42,4 +77,5 @@
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
