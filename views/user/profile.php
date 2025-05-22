@@ -15,55 +15,21 @@
         <div class="container">
             <div class="row content-wrapper">
                 <!-- Sidebar -->
-                <div class="col-md-3 col-lg-3 sidebar">
-                    <div class="brand">
-                        <!-- LaFlora <span class="brand-icon">❀</span> -->
-                      <a class="navbar-brand" href="../../index.html">LaFlora <i class="fa-solid fa-seedling ms-1"></i></a>
-                    </div>
-                    <div class="user-info">
-                        <div class="user-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="user-name">Sarah Johnson</div>
-                        <div class="user-email">sarah@example.com</div>
-                    </div>
-                    
-                    <div class="mt-4">
-                        <ul class="nav nav-pills flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link" href="./profile.html"><i class="fas fa-user nav-icon"></i> My Profile</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./orders.html"><i class="fas fa-box nav-icon"></i> My Orders</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="./wishlist.html"><i class="fas fa-heart nav-icon"></i> Wishlist</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fas fa-sign-out-alt nav-icon"></i> Logout</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <?php include_once('./includes/user_nav.php'); ?>
 
                 <!-- Main Content -->
                 <div class="col-md-9 col-lg-9 content">
                     <h2 class="section-title">My Profile</h2>
-                    <form>
+                    
                         <div class="mb-3">
                             <label for="fullname" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="fullname" value="Sarah Johnson">
+                            <input type="text" class="form-control" id="fullname" value="<?php echo $_SESSION['name']; ?>" readonly autocomplete="off">
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="email" value="sarah@example.com">
+                            <input type="email" class="form-control" id="email" value="<?php echo $_SESSION['email']; ?>" readonly autocomplete="off">
                         </div>
-                        <div class="mb-3">
-                            <label for="phone" class="form-label">Phone Number</label>
-                            <input type="text" class="form-control" id="phone" value="(555) 123-4567">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </form>
+                                            
 
                     <div class="password-section">
                         <h3 class="section-title">Change Password</h3>

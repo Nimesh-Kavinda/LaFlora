@@ -3,7 +3,7 @@ $current = basename($_SERVER['PHP_SELF']);
 ?>
 <nav class="col-md-3 col-lg-2 d-md-block admin-sidebar sidebar p-0">
                 <div class="position-sticky d-flex flex-column align-items-center py-4">
-                    <a class="navbar-brand mb-4 admin-brand" href="../../index.html">
+                    <a class="navbar-brand mb-4 admin-brand" href="../../index.php">
                         LaFlora <i class="fa-solid fa-seedling ms-1"></i>
                     </a>
                     <ul class="nav flex-column w-100">
@@ -22,9 +22,12 @@ $current = basename($_SERVER['PHP_SELF']);
                         <li class="nav-item mb-2">
                             <a class="nav-link admin-nav-link<?php if($current=='users.php') echo ' active'; ?>" href="./users.php"><i class="fas fa-users nav-icon me-2"></i> Users</a>
                         </li>
-                        <li class="nav-item mt-4">
-                            <a class="nav-link admin-nav-link" href="#"><i class="fas fa-sign-out-alt nav-icon me-2"></i> Logout</a>
-                        </li>
+                       <form action="../../controller/user_logout_process.php" method="post">
+                                <input type="hidden" name="logout" value="true">
+                                <li class="nav-item mb-2">
+                                    <button type="submit" class="nav-link admin-nav-link"><i class="fas fa-sign-out-alt nav-icon me-2"></i> Logout</button>
+                                </li>
+                            </form>
                     </ul>
                 </div>
             </nav>
