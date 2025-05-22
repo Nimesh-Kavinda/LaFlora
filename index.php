@@ -1,3 +1,10 @@
+<?php 
+ 
+ include_once './config/db.php';
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,24 +36,29 @@
           <a class="nav-link active" aria-current="page" href="#home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./views/about.html">About</a>
+          <a class="nav-link" href="./views/about.php">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./views/shop.html">Shop</a>
+          <a class="nav-link" href="./views/shop.php">Shop</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./views/contact.html">Contact</a>
+          <a class="nav-link" href="./views/contact.php">Contact</a>
         </li>
+        <form action="./controller/user_logout_process.php" method="post">
+        <li class="nav-item">
+          <button type="submit" class="nav-link" style="border: none; background: none;">Logout</button>
+        </li>
+        </form>
       </ul>
       <ul class="navbar-nav ms-3">
         <li class="nav-item">
-          <a class="nav-link" href="views/wishlist.html" title="Wishlist"><i class="fa-regular fa-heart"></i></a>
+          <a class="nav-link" href="views/wishlist.php" title="Wishlist"><i class="fa-regular fa-heart"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="views/cart.html" title="Cart"><i class="fa-solid fa-cart-shopping"></i></a>
+          <a class="nav-link" href="views/cart.php" title="Cart"><i class="fa-solid fa-cart-shopping"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="views/signin.html" title="Sign In"><i class="fa-regular fa-user"></i></a>
+          <a class="nav-link" href="views/signin.php" title="Sign In"><i class="fa-regular fa-user"></i></a>
         </li>
       </ul>
     </div>

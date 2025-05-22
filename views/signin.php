@@ -19,7 +19,13 @@
   <div class="signin-card">
    <a href="../index.html" style="text-decoration: none;"> <div class="signin-logo">LaFlora <i class="fa-solid fa-seedling"></i></div> </a>
     <div class="signin-title">Sign In to Your Account</div>
-    <form method="post" action="">
+    <?php
+        if (isset($_GET['success'])) {
+    echo "<p class = 'text-center' style='color: green;'>".htmlspecialchars($_GET['success'])."</p>";
+        }
+    ?>
+
+    <form method="post" action="../controller/sign_in_process.php">
       <div class="mb-3">
         <label for="signinEmail" class="form-label">Email address</label>
         <input type="email" class="form-control" id="signinEmail" name="email" required autofocus>
@@ -32,7 +38,7 @@
     </form>
     <div class="text-center mt-4">
       <span class="text-muted">Don't have an account?</span>
-      <a href="./signup.html" class="signin-link ms-1">Sign up</a>
+      <a href="./signup.php" class="signin-link ms-1">Sign up</a>
     </div>
   </div>
 </body>
