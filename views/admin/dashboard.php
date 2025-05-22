@@ -14,33 +14,7 @@
     <div class="container-fluid min-vh-100 admin-bg">
         <div class="row h-100">
             <!-- Sidebar -->
-            <nav class="col-md-3 col-lg-2 d-md-block admin-sidebar sidebar p-0">
-                <div class="position-sticky d-flex flex-column align-items-center py-4">
-                    <a class="navbar-brand mb-4 admin-brand" href="../../index.html">
-                        LaFlora <i class="fa-solid fa-seedling ms-1"></i>
-                    </a>
-                    <ul class="nav flex-column w-100">
-                        <li class="nav-item mb-2">
-                            <a class="nav-link admin-nav-link active" href="./dashboard.html"><i class="fas fa-tachometer-alt nav-icon me-2"></i> Dashboard</a>
-                        </li>
-                        <li class="nav-item mb-2">
-                            <a class="nav-link admin-nav-link" href="./products.html"><i class="fas fa-box-open nav-icon me-2"></i> Products</a>
-                        </li>
-                        <li class="nav-item mb-2">
-                            <a class="nav-link admin-nav-link" href="#"><i class="fas fa-tags nav-icon me-2"></i> Categories</a>
-                        </li>
-                        <li class="nav-item mb-2">
-                            <a class="nav-link admin-nav-link" href="#"><i class="fas fa-shopping-cart nav-icon me-2"></i> Orders</a>
-                        </li>
-                        <li class="nav-item mb-2">
-                            <a class="nav-link admin-nav-link" href="#"><i class="fas fa-users nav-icon me-2"></i> Users</a>
-                        </li>
-                        <li class="nav-item mt-4">
-                            <a class="nav-link admin-nav-link" href="#"><i class="fas fa-sign-out-alt nav-icon me-2"></i> Logout</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            <?php include_once('./includes/admin_nav.php'); ?>
             <!-- Main Content -->
             <main class="col-md-9 col-lg-10 ms-sm-auto px-md-5 py-4">
                 <h1 class="mb-4 admin-title">Welcome, Admin!</h1>

@@ -19,7 +19,7 @@
   <div class="signup-card">
        <a href="../index.html" style="text-decoration: none;"> <div class="signup-logo">LaFlora <i class="fa-solid fa-seedling"></i></div> </a>
     <div class="signup-title">Create Your Account</div>
-    <form method="post" action="">
+    <form method="post" action="../controller/sign_up_process.php">
       <div class="mb-3">
         <label for="signupName" class="form-label">Full Name</label>
         <input type="text" class="form-control" id="signupName" name="name" required autofocus>
@@ -34,13 +34,13 @@
       </div>
       <div class="mb-3">
         <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
-        <input type="password" class="form-control" id="signupConfirmPassword" name="confirm_password" required>
+        <input type="password" class="form-control" id="signupConfirmPassword" name="confirmPassword" required>
       </div>
       <button class="btn btn-laflora w-100 py-2 mt-2" type="submit">Sign Up</button>
     </form>
     <div class="text-center mt-3">
       <span class="text-muted">Already have an account?</span>
-      <a href="./signin.html" class="signup-link ms-1">Sign in</a>
+      <a href="./signin.php" class="signup-link ms-1">Sign in</a>
     </div>
   </div>
 </body>
