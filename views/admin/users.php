@@ -5,7 +5,7 @@ $success = '';
 $error = '';
 
 // Handle user type update
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_user_type'], $_POST['user_id'], $_POST['user_type'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id'], $_POST['user_type'])) {
     $user_id = intval($_POST['user_id']);
     $user_type = $_POST['user_type'] === 'admin' ? 'admin' : 'user';
     $stmt = $conn->prepare('UPDATE users SET role = :user_type WHERE id = :id');
@@ -48,6 +48,8 @@ if ($stmt) {
     <!-- Font Awesome for icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./public/css/main.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="container-fluid min-vh-100 admin-bg">
@@ -97,9 +99,9 @@ if ($stmt) {
                                         </form>
                                     </td>
                                     <td class="text-center">
-                                        <form method="POST" class="d-inline">
+                                        <form method="POST" class="d-inline delete-user-form">
                                             <input type="hidden" name="delete_user_id" value="<?= htmlspecialchars($user['id']) ?>">
-                                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete" onclick="return confirm('Are you sure you want to delete this user?')"><i class="fas fa-trash-alt"></i></button>
+                                            <button type="button" class="btn btn-sm btn-outline-danger delete-user-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -112,5 +114,28 @@ if ($stmt) {
     </div>
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.delete-user-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const form = btn.closest('form');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'Do you really want to delete this user?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#e75480',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    });
+    </script>
 </body>
 </html>
