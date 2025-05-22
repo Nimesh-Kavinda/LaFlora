@@ -14,13 +14,13 @@ if ($user && password_verify($password, $user['password'])) {
     session_start();
     $_SESSION['email'] = $user['email'];
     $_SESSION['name'] = $user['name'];
-    $_SESSION['user_id'] = $user['user_id'];
+    $_SESSION['user_id'] = $user['id'];
     $_SESSION['user_type'] = $user['role'];
 
     header("Location: ../index.php?login=success");
     exit();
 } else {
     echo "<script>alert('Invalid email or password!');</script>";
-    echo "<script>window.location.href = '../pages/signin.php';</script>";
+    echo "<script>window.location.href = '../views/signin.php';</script>";
 }
 ?>

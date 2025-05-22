@@ -1,6 +1,6 @@
-<?php 
- 
- include_once './config/db.php';
+<?php
+    session_start();
+    include_once './config/db.php';
 ?>
 
 
@@ -57,9 +57,22 @@
         <li class="nav-item">
           <a class="nav-link" href="views/cart.php" title="Cart"><i class="fa-solid fa-cart-shopping"></i></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="views/signin.php" title="Sign In"><i class="fa-regular fa-user"></i></a>
-        </li>
+         <?php
+            if (isset($_SESSION['name'])) {
+                if ($_SESSION['user_type'] == 'admin') {
+                    echo '<li class="nav-item">
+                            <a class="nav-link" href="./views/admin/dashboard.php" title="Admin Dashboard"><i class="fa-solid fa-user-shield"></i></a>
+                          </li>';
+                } else
+                echo '<li class="nav-item">
+                        <a class="nav-link" href="./views/user/profile.php" title="Profile"><i class="fa-regular fa-user"></i></a>
+                      </li>';
+            } else {    
+                echo '<li class="nav-item">
+                        <a class="nav-link" href="views/signin.php" title="Sign In"><i class="fa-regular fa-user"></i></a>
+                      </li>';
+            }
+        ?>
       </ul>
     </div>
   </div>

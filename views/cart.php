@@ -17,41 +17,7 @@
 </head>
 <body>
 <!-- Navbar (same as other pages) -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
-  <div class="container">
-    <a class="navbar-brand" href="../index.html">LaFlora <i class="fa-solid fa-seedling ms-1"></i></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="../index.html#home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="about.html">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="shop.html">Shop</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../index.html#contact">Contact</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ms-3">
-        <li class="nav-item">
-          <a class="nav-link" href="wishlist.html" title="Wishlist"><i class="fa-regular fa-heart"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="cart.html" title="Cart"><i class="fa-solid fa-cart-shopping"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="signin.html" title="Sign In"><i class="fa-regular fa-user"></i></a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<?php include_once('../includes/nav.php'); ?>
 
 <section class="cart-hero-section py-5">
   <div class="container">
@@ -170,46 +136,7 @@
 </section>
 
 <!-- Footer (same as other pages) -->
-<footer class="footer">
-  <div class="container">
-    <div class="row align-items-stretch gy-4">
-      <div class="col-md-4 d-flex align-items-center justify-content-center justify-content-md-start">
-        <div class="footer-section">
-          <span class="footer-logo">LaFlora <i class="fa-solid fa-seedling"></i></span>
-          <div>Order the freshest flowers online.</div>
-        </div>
-      </div>
-      <div class="col-md-1 d-none d-md-flex align-items-center">
-        <div class="footer-divider"></div>
-      </div>
-      <div class="col-md-3 d-flex align-items-center justify-content-center">
-        <div class="footer-section text-center text-md-start">
-          <div class="fw-bold mb-1">Quick Links</div>
-          <a href="../index.html#home" class="footer-link">Home</a>
-          <a href="about.html" class="footer-link">About</a>
-          <a href="shop.html" class="footer-link">Shop</a>
-          <a href="../index.html#contact" class="footer-link">Contact</a>
-        </div>
-      </div>
-      <div class="col-md-1 d-none d-md-flex align-items-center">
-        <div class="footer-divider"></div>
-      </div>
-      <div class="col-md-3 d-flex align-items-center justify-content-center justify-content-md-end">
-        <div class="footer-section text-center text-md-end">
-          <div class="fw-bold mb-1">Contact & Social</div>
-          <div class="mb-1">
-            <a href="#" class="footer-social" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="footer-social" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="footer-social" title="Twitter"><i class="fab fa-twitter"></i></a>
-          </div>
-          <div>Call: <a href="tel:0715343747" class="footer-link">0715343747</a></div>
-          <div>Email: <a href="mailto:info@laflora.com" class="footer-link">info@laflora.com</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom mt-4">&copy; 2025 LaFlora. All rights reserved.</div>
-  </div>
-</footer>
+ <?php include_once('../includes/footer.php'); ?>
 
 <!-- Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

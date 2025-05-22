@@ -7,27 +7,27 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#home">Home</a>
+          <a class="nav-link" aria-current="page" href="../index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./views/about.php">About</a>
+          <a class="nav-link" href="./about.php">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./views/shop.php">Shop</a>
+          <a class="nav-link" href="./shop.php">Shop</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./views/contact.php">Contact</a>
+          <a class="nav-link" href="./contact.php">Contact</a>
         </li>
       </ul>
       <ul class="navbar-nav ms-3">
         <li class="nav-item">
-          <a class="nav-link" href="views/wishlist.php" title="Wishlist"><i class="fa-regular fa-heart"></i></a>
+          <a class="nav-link" href="./wishlist.php" title="Wishlist"><i class="fa-regular fa-heart"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="views/cart.php" title="Cart"><i class="fa-solid fa-cart-shopping"></i></a>
+          <a class="nav-link" href="./cart.php" title="Cart"><i class="fa-solid fa-cart-shopping"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="views/signin.php" title="Sign In"><i class="fa-regular fa-user"></i></a>
+          <a class="nav-link" href="./signin.php" title="Sign In"><i class="fa-regular fa-user"></i></a>
         </li>
       </ul>
     </div>
