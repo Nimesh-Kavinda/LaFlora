@@ -1,6 +1,12 @@
 <?php
     session_start();
     include './config/db.php';
+
+    $produtcts = [];
+    $stmt = $conn->query('SELECT id, name, price, image FROM products ORDER BY id DESC LIMIT 4');
+    if ($stmt) {
+        $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 ?>
 
 
@@ -83,7 +89,7 @@
   <div class="container">
     <h1>Welcome to LaFlora</h1>
     <p class="mb-4">Order the freshest, most beautiful flowers online. Fast delivery, stunning arrangements, and a touch of nature for every occasion.</p>
-    <a href="#products" class="btn btn-laflora btn-lg">Shop Now</a>
+    <a href="./views/shop.php" class="btn btn-laflora btn-lg">Shop Now</a>
   </div>
 </section>
 
@@ -124,46 +130,19 @@
     <h2 class="text-center mb-5" style="color:var(--laflora-primary)">Our Best Sellers</h2>
     <div class="row g-4">
       <!-- Product Card Example -->
+       
+      <?php foreach ($products as $product): ?>
       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card product-card h-100">
-          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Rose Bouquet">
+        <div class="card product-card h-75 shadow-lg border-0">
+          <img src="./uploads/products/<?php echo $product['image']; ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name']); ?>">
           <div class="card-body text-center">
-            <h5 class="card-title">Rose Bouquet</h5>
-            <p class="card-text">Rs. 1500.00</p>
+            <h5 class="card-title"><?php echo htmlspecialchars($product['name']); ?></h5>
+            <p class="card-text">Rs. <?php echo number_format($product['price'], 2); ?></p>
             <a href="#" class="btn btn-laflora">Add to Cart</a>
           </div>
         </div>
       </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card product-card h-100">
-          <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Tulip Delight">
-          <div class="card-body text-center">
-            <h5 class="card-title">Tulip Delight</h5>
-            <p class="card-text">Rs. 1200.00</p>
-            <a href="#" class="btn btn-laflora">Add to Cart</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card product-card h-100">
-          <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3c8b?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Orchid Elegance">
-          <div class="card-body text-center">
-            <h5 class="card-title">Orchid Elegance</h5>
-            <p class="card-text">Rs. 2000.00</p>
-            <a href="#" class="btn btn-laflora">Add to Cart</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card product-card h-100">
-          <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Sunflower Joy">
-          <div class="card-body text-center">
-            <h5 class="card-title">Sunflower Joy</h5>
-            <p class="card-text">Rs. 1000.00</p>
-            <a href="#" class="btn btn-laflora">Add to Cart</a>
-          </div>
-        </div>
-      </div>
+      <?php endforeach; ?>
       <!-- Add more product cards as needed -->
     </div>
   </div>
