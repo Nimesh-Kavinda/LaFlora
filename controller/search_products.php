@@ -55,7 +55,8 @@ foreach ($products as $product): ?>
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title text-primary"><?php echo htmlspecialchars($product['name']); ?></h5>
                 <div class="mb-2 text-muted small"><?php echo htmlspecialchars($product['category_name']); ?></div>
-                <div class="mb-3 fw-bold text-success">Rs. <?php echo number_format($product['price'], 2); ?></div>                <div class="mt-auto d-flex gap-2">
+                <div class="mb-3 fw-bold text-success">Rs. <?php echo number_format($product['price'], 2); ?></div>                
+                <div class="mt-auto d-flex gap-2">
                     <button type="button" class="btn btn-laflora btn-sm w-100 add-to-cart-btn" 
                             data-product-id="<?php echo $product['id']; ?>">
                         <i class="fa fa-cart-plus me-1"></i> Add to Cart

@@ -22,9 +22,10 @@
     <!-- Google Fonts for Logo -->
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <!-- Google Fonts for body and headings -->
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="public/css/main.css">
 </head>
@@ -62,10 +63,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link <?php if ($current == 'cart.php') echo 'active'; ?> position-relative" href="./views/cart.php" title="Cart">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <?php
+            <i class="fa-solid fa-cart-shopping"></i>            <?php
               if (isset($_SESSION['user_id'])) {
-                $stmt = $conn->prepare('SELECT SUM(quantity) as count FROM cart WHERE user_id = ?');
+                $stmt = $conn->prepare('SELECT COUNT(*) as count FROM cart WHERE user_id = ?');
                 $stmt->execute([$_SESSION['user_id']]);
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 $count = (int)($result['count'] ?? 0);
@@ -148,11 +148,18 @@
       <?php foreach ($products as $product): ?>
       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
         <div class="card product-card h-75 shadow-lg border-0">
-          <img src="./uploads/products/<?php echo $product['image']; ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name']); ?>">
-          <div class="card-body text-center">
+          <img src="./uploads/products/<?php echo $product['image']; ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name']); ?>">          <div class="card-body text-center">
             <h5 class="card-title"><?php echo htmlspecialchars($product['name']); ?></h5>
             <p class="card-text">Rs. <?php echo number_format($product['price'], 2); ?></p>
-            <a href="#" class="btn btn-laflora">Add to Cart</a>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <button type="button" class="btn btn-laflora add-to-cart-btn" data-product-id="<?php echo $product['id']; ?>">
+                    <i class="fa fa-cart-plus me-1"></i> Add to Cart
+                </button>
+            <?php else: ?>
+                <a href="views/signin.php" class="btn btn-laflora">
+                    <i class="fa fa-cart-plus me-1"></i> Add to Cart
+                </a>
+            <?php endif; ?>
           </div>
         </div>
       </div>
@@ -238,7 +245,10 @@
 
 <!-- Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 <!-- Custom JS -->
 <script src="public/js/main.js"></script>
+<script src="public/js/cart.js"></script>
 </body>
 </html>

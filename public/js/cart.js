@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Helper function to get the appropriate path based on current location
+    function getControllerPath(file) {
+        const isIndex = window.location.pathname.endsWith('index.php') || window.location.pathname.endsWith('LaFlora/');
+        return isIndex ? `controller/${file}` : `../controller/${file}`;
+    }
+
+    // Helper function to get the appropriate views path based on current location
+    function getViewsPath(file) {
+        const isIndex = window.location.pathname.endsWith('index.php') || window.location.pathname.endsWith('LaFlora/');
+        return isIndex ? `views/${file}` : file;
+    }
+
     // Helper function to format currency
     function formatCurrency(amount) {
         return 'Rs. ' + amount.toFixed(2);
@@ -49,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const form = input.closest('form');
         form.querySelectorAll('button').forEach(btn => btn.disabled = true);
         
-        fetch('../controller/cart_process.php', {
+        fetch(getControllerPath('cart_process.php'), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -101,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
             btn.disabled = true;
             btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Adding...';
 
-            fetch('../controller/cart_process.php', {
+            fetch(getControllerPath('cart_process.php'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -113,7 +125,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     throw new Error('Network response was not ok');
                 }
                 return response.json();
-            })            .then(data => {
+            })
+            .then(data => {
                 if (data.status === 'success') {
                     Swal.fire({
                         icon: 'success',
@@ -133,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         cancelButtonText: 'Continue Shopping'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            window.location.href = '../views/cart.php';
+                            window.location.href = getViewsPath('cart.php');
                         }
                     });
                 } else {
@@ -181,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     btn.disabled = true;
                     btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span>';
                     
-                    fetch('../controller/cart_process.php', {
+                    fetch(getControllerPath('cart_process.php'), {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
@@ -215,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <div class="text-center py-5">
                                         <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
                                         <h4 class="text-muted">Your cart is empty</h4>
-                                        <a href="../views/shop.php" class="btn btn-laflora mt-3">
+                                        <a href="${getViewsPath('shop.php')}" class="btn btn-laflora mt-3">
                                             <i class="fas fa-shopping-bag me-2"></i>Continue Shopping
                                         </a>
                                     </div>
@@ -249,7 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to update cart count in navbar
     function updateCartCount() {
-        fetch('../controller/get_cart_count.php')
+        fetch(getControllerPath('get_cart_count.php'))
             .then(response => response.json())
             .then(data => {
                 const cartCountElement = document.querySelector('.cart-count');
@@ -281,7 +294,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 confirmButtonText: 'Yes, clear it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    fetch('../controller/cart_process.php', {
+                    fetch(getControllerPath('cart_process.php'), {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
