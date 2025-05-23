@@ -22,9 +22,10 @@
     <!-- Google Fonts for body and headings -->
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">    <!-- Custom CSS -->
     <link rel="stylesheet" href="../public/css/main.css">
+    <!-- SweetAlert2 -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
 </head>
 <body>
     <!-- Navbar -->
@@ -71,12 +72,13 @@
     </section>
 
     <!-- Footer -->
-    <?php include_once('../includes/footer.php'); ?>
-
-    <!-- Bootstrap JS Bundle -->
+    <?php include_once('../includes/footer.php'); ?>    <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
     <!-- Custom JS -->
     <script src="../public/js/main.js"></script>
     <script src="../public/js/search.js"></script>
+    <script src="../public/js/cart.js"></script>
 </body>
 </html>
