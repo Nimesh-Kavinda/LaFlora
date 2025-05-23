@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 $current = basename($_SERVER['PHP_SELF']);
 ?>
 
@@ -7,7 +7,7 @@ $current = basename($_SERVER['PHP_SELF']);
 <div class="col-md-3 col-lg-3 sidebar" style="height: 100vh;">
                     <div class="brand">
                         <!-- LaFlora <span class="brand-icon">❀</span> -->
-                      <a class="navbar-brand" href="../../index.html">LaFlora <i class="fa-solid fa-seedling ms-1"></i></a>
+                      <a class="navbar-brand" href="../../index.php">LaFlora <i class="fa-solid fa-seedling ms-1"></i></a>
                     </div>
                     <div class="user-info">
                         <div class="user-avatar">
