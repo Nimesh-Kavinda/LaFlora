@@ -51,11 +51,6 @@
         <li class="nav-item">
           <a class="nav-link" href="./views/contact.php">Contact</a>
         </li>
-        <form action="./controller/user_logout_process.php" method="post">
-        <li class="nav-item">
-          <button type="submit" class="nav-link" style="border: none; background: none;">Logout</button>
-        </li>
-        </form>
       </ul>
       <ul class="navbar-nav ms-3">
         <li class="nav-item">
@@ -141,7 +136,7 @@
 <!-- Products Section -->
 <section id="products" class="py-5 bg-light">
   <div class="container">
-    <h2 class="text-center mb-5" style="color:var(--laflora-primary)">Our Best Sellers</h2>
+    <h2 class="text-center mb-5" style="color:var(--laflora-primary)">Our Best Products</h2>
     <div class="row g-4">
       <!-- Product Card Example -->
        
