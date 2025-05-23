@@ -918,3 +918,70 @@ body.signup-page {
   align-items: center;
   justify-content: center;
 }
+
+/* Shop Page Product Card Styles */
+.shop-hero-section {
+  padding: 3rem 0;
+  background: linear-gradient(120deg, #ffe0ec 0%, #e0ffe8 100%);
+  margin-bottom: 2rem;
+}
+
+#shopProductGrid .product-card {
+  width: 100%;
+  max-width: 100%;
+  min-height: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+#shopProductGrid .product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(231, 84, 128, 0.15) !important;
+}
+
+#shopProductGrid .product-card .card-img-top {
+  height: 220px;
+  object-fit: cover;
+  background: #f8f9fa;
+  transition: transform 0.3s ease;
+}
+
+#shopProductGrid .product-card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+#shopProductGrid .card-body {
+  padding: 1.25rem;
+  background: white;
+}
+
+#shopProductGrid .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--laflora-primary) !important;
+}
+
+#shopProductGrid .text-success {
+  color: var(--laflora-secondary) !important;
+  font-size: 1.15rem;
+}
+
+#shopProductGrid .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 767px) {
+  #shopProductGrid .product-card {
+    min-height: 350px;
+  }
+  #shopProductGrid .product-card .card-img-top {
+    height: 180px;
+  }
+}
