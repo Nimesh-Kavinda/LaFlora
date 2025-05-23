@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include '../../config/db.php';
   $users = [];
   $stmt = $conn->query('SELECT id, name, email, role FROM users ORDER BY id ASC');

@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 $current = basename($_SERVER['PHP_SELF']);
 ?>
 <nav class="col-md-3 col-lg-2 d-md-block admin-sidebar sidebar p-0">
