@@ -1,3 +1,25 @@
+<?php 
+include '../../config/db.php';
+  $users = [];
+  $stmt = $conn->query('SELECT id, name, email, role FROM users ORDER BY id ASC');
+  if ($stmt) {
+      $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  } 
+  $products = [];
+  $sql = 'SELECT p.id, p.name, c.category_name, p.price, p.qty, p.image, p.created_at FROM products p LEFT JOIN category c ON p.category_id = c.id ORDER BY p.id DESC';
+  $stmt = $conn->query($sql);
+  if ($stmt) {
+      $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  $categories = [];
+  $stmt = $conn->query('SELECT id, category_name FROM category ORDER BY id ASC');
+  if ($stmt) {
+      $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +46,7 @@
                             <div class="card-body text-center">
                                 <i class="fas fa-box-open fa-2x mb-2 text-primary"></i>
                                 <h5 class="card-title mb-1">Products</h5>
-                                <p class="card-text text-muted">120</p>
+                                <p class="card-text text-muted"><?php echo count($products); ?></p>
                             </div>
                         </div>
                     </div>
@@ -33,7 +55,7 @@
                             <div class="card-body text-center">
                                 <i class="fas fa-tags fa-2x mb-2 text-success"></i>
                                 <h5 class="card-title mb-1">Categories</h5>
-                                <p class="card-text text-muted">15</p>
+                                <p class="card-text text-muted"><?php echo count($categories); ?></p>
                             </div>
                         </div>
                     </div>
@@ -51,7 +73,7 @@
                             <div class="card-body text-center">
                                 <i class="fas fa-users fa-2x mb-2 text-danger"></i>
                                 <h5 class="card-title mb-1">Users</h5>
-                                <p class="card-text text-muted">80</p>
+                                <p class="card-text text-muted"><?php echo count($users); ?></p>
                             </div>
                         </div>
                     </div>
