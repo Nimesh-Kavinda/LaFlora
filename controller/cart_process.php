@@ -45,6 +45,13 @@ function getCartTotal($conn, $user_id) {
     return $result['total'] ?: 0;
 }
 
+// Helper function to get cart count
+function getCartCount($conn, $user_id) {
+    $stmt = $conn->prepare('SELECT COUNT(*) FROM cart WHERE user_id = ?');
+    $stmt->execute([$user_id]);
+    return (int)$stmt->fetchColumn();
+}
+
 // Add to Cart
 if (isset($_POST['action']) && $_POST['action'] === 'add') {
     $user_id = $_SESSION['user_id'];
@@ -55,7 +62,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'add') {
         // Check stock availability first
         $stock_check = checkStockAvailability($conn, $product_id, $quantity);
         if (!$stock_check['status']) {
-            echo json_encode(['status' => 'error', 'message' => $stock_check['message']]);
+            echo json_encode(['status' => 'error', 'message' => $stock_check['message'], 'cartCount' => getCartCount($conn, $user_id)]);
             exit;
         }
 
@@ -69,13 +76,15 @@ if (isset($_POST['action']) && $_POST['action'] === 'add') {
             $new_quantity = $existing_item['quantity'] + $quantity;
             $stock_check = checkStockAvailability($conn, $product_id, $new_quantity);
             if (!$stock_check['status']) {
-                echo json_encode(['status' => 'error', 'message' => $stock_check['message']]);
+                echo json_encode(['status' => 'error', 'message' => $stock_check['message'], 'cartCount' => getCartCount($conn, $user_id)]);
                 exit;
-            }            // Item already exists in cart
+            }
+            // Item already exists in cart
             echo json_encode([
                 'status' => 'exists',
                 'message' => 'This item is already in your cart',
-                'current_quantity' => $existing_item['quantity']
+                'current_quantity' => $existing_item['quantity'],
+                'cartCount' => getCartCount($conn, $user_id)
             ]);
         } else {
             // Insert new item if product doesn't exist
@@ -85,14 +94,15 @@ if (isset($_POST['action']) && $_POST['action'] === 'add') {
                 echo json_encode([
                     'status' => 'success', 
                     'message' => 'Product added to cart',
-                    'cart_total' => $total
+                    'cart_total' => $total,
+                    'cartCount' => getCartCount($conn, $user_id)
                 ]);
             } else {
-                echo json_encode(['status' => 'error', 'message' => 'Failed to add product to cart']);
+                echo json_encode(['status' => 'error', 'message' => 'Failed to add product to cart', 'cartCount' => getCartCount($conn, $user_id)]);
             }
         }
     } else {
-        echo json_encode(['status' => 'error', 'message' => 'Invalid product']);
+        echo json_encode(['status' => 'error', 'message' => 'Invalid product', 'cartCount' => getCartCount($conn, $user_id)]);
     }
 }
 
@@ -109,13 +119,14 @@ if (isset($_POST['action']) && $_POST['action'] === 'remove') {
             echo json_encode([
                 'status' => 'success', 
                 'message' => 'Product removed from cart',
-                'cart_total' => $total
+                'cart_total' => $total,
+                'cartCount' => getCartCount($conn, $user_id)
             ]);
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Failed to remove product from cart']);
+            echo json_encode(['status' => 'error', 'message' => 'Failed to remove product from cart', 'cartCount' => getCartCount($conn, $user_id)]);
         }
     } else {
-        echo json_encode(['status' => 'error', 'message' => 'Invalid cart item']);
+        echo json_encode(['status' => 'error', 'message' => 'Invalid cart item', 'cartCount' => getCartCount($conn, $user_id)]);
     }
 }
 
@@ -135,7 +146,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'update') {
             // Check stock availability first
             $stock_check = checkStockAvailability($conn, $cart_item['product_id'], $quantity);
             if (!$stock_check['status']) {
-                echo json_encode(['status' => 'error', 'message' => $stock_check['message']]);
+                echo json_encode(['status' => 'error', 'message' => $stock_check['message'], 'cartCount' => getCartCount($conn, $user_id)]);
                 exit;
             }
 
@@ -145,31 +156,32 @@ if (isset($_POST['action']) && $_POST['action'] === 'update') {
                 echo json_encode([
                     'status' => 'success', 
                     'message' => 'Cart updated successfully',
-                    'cart_total' => $total
+                    'cart_total' => $total,
+                    'cartCount' => getCartCount($conn, $user_id)
                 ]);
             } else {
-                echo json_encode(['status' => 'error', 'message' => 'Failed to update cart']);
+                echo json_encode(['status' => 'error', 'message' => 'Failed to update cart', 'cartCount' => getCartCount($conn, $user_id)]);
             }
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Cart item not found']);
+            echo json_encode(['status' => 'error', 'message' => 'Cart item not found', 'cartCount' => getCartCount($conn, $user_id)]);
         }
     } else {
-        echo json_encode(['status' => 'error', 'message' => 'Invalid request']);
+        echo json_encode(['status' => 'error', 'message' => 'Invalid request', 'cartCount' => getCartCount($conn, $user_id)]);
     }
 }
 
 // Clear Cart
 if (isset($_POST['action']) && $_POST['action'] === 'clear') {
     $user_id = $_SESSION['user_id'];
-    
     $stmt = $conn->prepare('DELETE FROM cart WHERE user_id = ?');
     if ($stmt->execute([$user_id])) {
         echo json_encode([
             'status' => 'success', 
             'message' => 'Cart cleared successfully',
-            'cart_total' => 0
+            'cart_total' => 0,
+            'cartCount' => getCartCount($conn, $user_id)
         ]);
     } else {
-        echo json_encode(['status' => 'error', 'message' => 'Failed to clear cart']);
+        echo json_encode(['status' => 'error', 'message' => 'Failed to clear cart', 'cartCount' => getCartCount($conn, $user_id)]);
     }
 }

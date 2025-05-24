@@ -24,6 +24,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (totalElement) totalElement.textContent = formatCurrency(total);
     }
 
+    // Helper function to update all cart badges in the DOM
+    function updateCartBadges(count) {
+        document.querySelectorAll('.cart-count').forEach(badge => {
+            badge.textContent = count;
+            badge.style.display = (parseInt(count) > 0) ? '' : 'none';
+        });
+    }
+
     // Handle quantity buttons
     document.addEventListener('click', function(e) {
         if (e.target.closest('.cart-qty-btn')) {
@@ -100,9 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Reset loading state
             form.querySelectorAll('button').forEach(btn => btn.disabled = false);
         });
-    }
-
-    // Handle add to cart button clicks
+    }    // Handle add to cart button clicks
     document.addEventListener('click', function(e) {
         if (e.target.closest('.add-to-cart-btn')) {
             e.preventDefault();
@@ -112,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show loading state
             btn.disabled = true;
             btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Adding...';
-
+            
             fetch(getControllerPath('cart_process.php'), {
                 method: 'POST',
                 headers: {
@@ -120,14 +126,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 body: `action=add&product_id=${productId}&quantity=1`
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
+                    // Update cart count before showing success message
+                    if (typeof data.cartCount !== 'undefined') {
+                        updateCartBadges(data.cartCount);
+                    }
+                    
                     Swal.fire({
                         icon: 'success',
                         title: 'Added to Cart!',
@@ -135,8 +141,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    updateCartCount();
                 } else if (data.status === 'exists') {
+                    // Update cart count for existing item
+                    if (typeof data.cartCount !== 'undefined') {
+                        updateCartBadges(data.cartCount);
+                    }
                     Swal.fire({
                         icon: 'info',
                         title: 'Already in Cart',
@@ -204,6 +213,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     .then(response => response.json())
                     .then(data => {
                         if (data.status === 'success') {
+                            // Update cart badges in the DOM
+                            if (typeof data.cartCount !== 'undefined') {
+                                updateCartBadges(data.cartCount);
+                            }
                             // Remove the item from DOM
                             const cartItem = btn.closest('.cart-card');
                             cartItem.remove();
@@ -213,6 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             }
                             updateCartCount();
                             
+
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Removed!',
@@ -304,6 +318,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     .then(response => response.json())
                     .then(data => {
                         if (data.status === 'success') {
+                            // Update cart badges in the DOM
+                            if (typeof data.cartCount !== 'undefined') {
+                                updateCartBadges(data.cartCount);
+                            }
                             location.reload();
                         } else {
                             Swal.fire({
