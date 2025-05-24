@@ -7,8 +7,18 @@ $product_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $product = null;
 
 if ($product_id > 0) {
-    $stmt = $conn->prepare('SELECT p.*, c.category_name AS category_name FROM products p LEFT JOIN category c ON p.category_id = c.id WHERE p.id = :id');
+    $user_id = $_SESSION['user_id'] ?? 0;
+
+    $stmt = $conn->prepare('
+        SELECT p.*, c.category_name AS category_name,
+        CASE WHEN w.wishlist_id IS NOT NULL THEN 1 ELSE 0 END as in_wishlist
+        FROM products p 
+        LEFT JOIN category c ON p.category_id = c.id 
+        LEFT JOIN wishlist w ON w.product_id = p.id AND w.user_id = :user_id
+        WHERE p.id = :id
+    ');
     $stmt->bindParam(':id', $product_id, PDO::PARAM_INT);
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
     $stmt->execute();
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
 }
@@ -175,37 +185,45 @@ if ($product_id > 0) {
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <h1 class="product-title"><?= htmlspecialchars($product['name']) ?></h1>
-                        <div class="product-price">Rs <?= number_format($product['price'], 2) ?></div>
-                        <div class="category-badge">
-                            <i class="fas fa-tag me-2"></i>
-                            <?= htmlspecialchars($product['category_name'] ?? 'Uncategorized') ?>
-                        </div>
-                        <div class="product-description">
-                            <?= nl2br(htmlspecialchars($product['description'])) ?>
-                        </div>
-                        <div class="action-buttons">
-                            <form method="POST" action="../controller/add_to_cart.php">
-                                <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
-                                <button type="submit" class="btn btn-add-cart">
-                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h2 class="mb-3 product-title" style="color:var(--primary-color)"><?= htmlspecialchars($product['name']) ?></h2>
+                        <h4 class="mb-3 product-price" style="color:var(--accent-color)">₹<?= number_format($product['price'], 2) ?></h4>
+                        <p class="mb-2 text-muted"><strong>Category:</strong> <?= htmlspecialchars($product['category_name'] ?? 'Uncategorized') ?></p>
+                        <p class="mb-4 product-description"><?= nl2br(htmlspecialchars($product['description'])) ?></p>
+                        
+                        <div class="d-flex gap-2">
+                            <?php if (isset($_SESSION['user_id'])): ?>
+                                <button type="button" class="btn btn-laflora add-to-cart-btn" 
+                                        data-product-id="<?= $product['id'] ?>">
+                                    <i class="fas fa-shopping-cart me-1"></i> Add to Cart
+                                </button>                                <button type="button" class="btn btn-outline-secondary add-to-wishlist-btn<?php echo $product['in_wishlist'] ? ' active' : ''; ?>"
+                                    data-product-id="<?= $product['id'] ?>">
+                                    <i class="fa fa-heart me-1<?php echo $product['in_wishlist'] ? ' text-danger' : ''; ?>"></i> 
+                                    <?php echo $product['in_wishlist'] ? 'Remove from Wishlist' : 'Add to Wishlist'; ?>
                                 </button>
-                            </form>
-                            <form method="POST" action="../controller/add_to_wishlist.php">
-                                <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
-                                <button type="submit" class="btn btn-wishlist">
-                                    <i class="fas fa-heart"></i> Add to Wishlist
-                                </button>
-                            </form>
+                            <?php else: ?>
+                                <a href="signin.php" class="btn btn-laflora">
+                                    <i class="fas fa-shopping-cart me-1"></i> Add to Cart
+                                </a>
+                                <a href="signin.php" class="btn btn-outline-secondary">
+                                    <i class="fa fa-heart me-1"></i> Add to Wishlist
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        <?php else: ?>
-            <div class="alert alert-warning text-center">Product not found.</div>
-        <?php endif; ?>            </div>
+            <?php else: ?>
+                <div class="alert alert-warning text-center">Product not found.</div>
+            <?php endif; ?>            </div>
         </div>
     </div>
     <?php include_once '../includes/footer.php'; ?>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../public/js/main.js"></script>
+    <script src="../public/js/cart.js"></script>
+    <script src="../public/js/wishlist.js"></script>
 </body>
 </html>

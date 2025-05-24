@@ -8,11 +8,14 @@ $category = isset($_GET['category']) ? $_GET['category'] : '';
 $price_range = isset($_GET['price']) ? $_GET['price'] : '';
 
 // Build the base query
-$sql = 'SELECT p.id, p.name, c.category_name, p.price, p.qty, p.image, p.created_at 
+$sql = 'SELECT p.id, p.name, c.category_name, p.price, p.qty, p.image, p.created_at,
+        CASE WHEN w.wishlist_id IS NOT NULL THEN 1 ELSE 0 END as in_wishlist
         FROM products p 
         LEFT JOIN category c ON p.category_id = c.id 
+        LEFT JOIN wishlist w ON w.product_id = p.id AND w.user_id = ? 
         WHERE 1=1';
-$params = [];
+
+$params = [$_SESSION['user_id'] ?? 0];
 
 // Add search condition if search term is provided
 if (!empty($search)) {
@@ -60,10 +63,10 @@ foreach ($products as $product): ?>
                     <button type="button" class="btn btn-laflora btn-sm w-100 add-to-cart-btn" 
                             data-product-id="<?php echo $product['id']; ?>">
                         <i class="fa fa-cart-plus me-1"></i> Add to Cart
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm w-100 add-to-wishlist-btn"
+                    </button>                    <button type="button" class="btn btn-outline-secondary btn-sm w-100 add-to-wishlist-btn<?php echo $product['in_wishlist'] ? ' active' : ''; ?>"
                             data-product-id="<?php echo $product['id']; ?>">
-                        <i class="fa fa-heart me-1"></i> Wishlist
+                        <i class="fa fa-heart me-1<?php echo $product['in_wishlist'] ? ' text-danger' : ''; ?>"></i> 
+                        <?php echo $product['in_wishlist'] ? 'Remove from Wishlist' : 'Add to Wishlist'; ?>
                     </button>
                 </div>
             </div>

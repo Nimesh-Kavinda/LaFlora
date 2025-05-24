@@ -25,8 +25,25 @@ $current = basename($_SERVER['PHP_SELF']);
       </ul>
       <ul class="navbar-nav ms-3">
         <li class="nav-item">
-          <a class="nav-link <?php if ($current == 'wishlist.php') echo 'active'; ?>" href="./wishlist.php" title="Wishlist"><i class="fa-regular fa-heart"></i></a>
-        </li>        <li class="nav-item">
+          <a class="nav-link <?php if ($current == 'wishlist.php') echo 'active'; ?> position-relative" href="./wishlist.php" title="Wishlist">
+            <i class="fa-regular fa-heart"></i>
+            <?php
+              if (isset($_SESSION['user_id'])) {
+                $stmt = $conn->prepare('SELECT COUNT(*) as count FROM wishlist WHERE user_id = ?');
+                $stmt->execute([$_SESSION['user_id']]);
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                $count = (int)($result['count'] ?? 0);
+                if ($count > 0) {
+                  echo '<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger wishlist-count">'
+                      . $count . '</span>';
+                } else {
+                  echo '<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger wishlist-count" style="display: none;">0</span>';
+                }
+              }
+            ?>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link <?php if ($current == 'cart.php') echo 'active'; ?> position-relative" href="./cart.php" title="Cart">
             <i class="fa-solid fa-cart-shopping"></i>
             <?php
