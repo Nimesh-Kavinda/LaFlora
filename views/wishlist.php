@@ -48,6 +48,63 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../public/css/main.css">
 </head>
+<style>
+    /* Wishlist product card sizing and style */
+    .wishlist-hero-section .product-card {
+        min-height: 370px;
+        max-height: 400px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border-radius: 1rem;
+        transition: box-shadow 0.2s, transform 0.2s;
+        overflow: hidden;
+        background: #fff;
+    }
+    .wishlist-hero-section .product-card:hover {
+        box-shadow: 0 6px 24px rgba(60, 72, 88, 0.12);
+        transform: translateY(-4px) scale(1.02);
+    }
+    .wishlist-hero-section .product-card .card-img-top {
+        height: 180px;
+        object-fit: cover;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        background: #f8f9fa;
+    }
+    .wishlist-hero-section .product-card .card-body {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 1rem 0.75rem 1rem;
+    }
+    .wishlist-hero-section .product-card .card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+    .wishlist-hero-section .product-card .btn {
+        font-size: 0.95rem;
+    }
+    @media (max-width: 991.98px) {
+        .wishlist-hero-section .product-card {
+            min-height: 340px;
+            max-height: 370px;
+        }
+        .wishlist-hero-section .product-card .card-img-top {
+            height: 150px;
+        }
+    }
+    @media (max-width: 575.98px) {
+        .wishlist-hero-section .product-card {
+            min-height: 300px;
+            max-height: 340px;
+        }
+        .wishlist-hero-section .product-card .card-img-top {
+            height: 120px;
+        }
+    }
+</style>
 <body>
 <!-- Navbar -->
 <?php include_once('../includes/nav.php'); ?>
