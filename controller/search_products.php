@@ -51,7 +51,7 @@ if ($stmt && $stmt->execute($params)) {
 foreach ($products as $product): ?>
     <div class="col-sm-6 col-md-4 col-lg-3">
         <div class="card product-card h-100 shadow-sm">
-            <img src="../uploads/products/<?php echo htmlspecialchars($product['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name']); ?>">
+            <a href="./details.php?id=<?php echo $product['id']; ?>"><img src="../uploads/products/<?php echo htmlspecialchars($product['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name']); ?>"></a>
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title text-primary"><?php echo htmlspecialchars($product['name']); ?></h5>
                 <div class="mb-2 text-muted small"><?php echo htmlspecialchars($product['category_name']); ?></div>
