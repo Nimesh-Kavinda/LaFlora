@@ -133,7 +133,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (typeof data.cartCount !== 'undefined') {
                         updateCartBadges(data.cartCount);
                     }
-                    
+                    // If on wishlist page, also remove from wishlist
+                    if (window.location.pathname.includes('wishlist.php')) {
+                        fetch(getControllerPath('add_to_wishlist.php'), {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                            body: `product_id=${productId}&action=remove`
+                        })
+                        .then(response => response.json())
+                        .then(wishlistData => {
+                            if (wishlistData.status === 'success') {
+                                if (typeof removeProductFromUI === 'function') {
+                                    removeProductFromUI(btn);
+                                }
+                                if (typeof updateWishlistCount === 'function') {
+                                    updateWishlistCount(wishlistData.wishlistCount);
+                                }
+                            }
+                        });
+                    }
                     Swal.fire({
                         icon: 'success',
                         title: 'Added to Cart!',
@@ -188,7 +206,6 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const btn = e.target.closest('.cart-remove');
             const cartId = btn.value;
-            
             Swal.fire({
                 title: 'Remove Item?',
                 text: "Are you sure you want to remove this item from your cart?",
@@ -202,7 +219,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Show loading state
                     btn.disabled = true;
                     btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span>';
-                    
                     fetch(getControllerPath('cart_process.php'), {
                         method: 'POST',
                         headers: {
@@ -213,20 +229,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     .then(response => response.json())
                     .then(data => {
                         if (data.status === 'success') {
-                            // Update cart badges in the DOM
-                            if (typeof data.cartCount !== 'undefined') {
-                                updateCartBadges(data.cartCount);
-                            }
                             // Remove the item from DOM
                             const cartItem = btn.closest('.cart-card');
                             cartItem.remove();
-                            
                             if (data.cart_total) {
                                 updateCartTotals(parseFloat(data.cart_total));
                             }
                             updateCartCount();
-                            
-
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Removed!',
@@ -234,8 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 showConfirmButton: false,
                                 timer: 1500
                             });
-
-                            // If cart is empty, show empty state
+                            // If cart is empty, show empty state and hide summary
                             const cartList = document.getElementById('cartList');
                             if (cartList && !cartList.querySelector('.cart-card')) {
                                 cartList.innerHTML = `
@@ -247,6 +255,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                         </a>
                                     </div>
                                 `;
+                                // Hide the order summary section
+                                const summary = document.querySelector('.cart-summary');
+                                if (summary) summary.style.display = 'none';
                             }
                         } else {
                             Swal.fire({
