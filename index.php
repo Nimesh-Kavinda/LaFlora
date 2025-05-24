@@ -76,14 +76,15 @@
           <a class="nav-link <?php if ($current == 'cart.php') echo 'active'; ?> position-relative" href="./views/cart.php" title="Cart">
             <i class="fa-solid fa-cart-shopping"></i>
             <?php
-              if (isset($_SESSION['user_id'])) {                $stmt = $conn->prepare('SELECT COUNT(*) as count FROM cart WHERE user_id = ?');
+              if (isset($_SESSION['user_id'])) {
+                $stmt = $conn->prepare('SELECT COUNT(*) as count FROM cart WHERE user_id = ?');
                 $stmt->execute([$_SESSION['user_id']]);
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 $count = (int)($result['count'] ?? 0);
-                if ($count > 0) {
-                  echo '<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count">'
-                      . $count . '</span>';
-                }
+                echo '<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count"'
+                    . ($count > 0 ? '' : ' style="display:none;"') . '>' . $count . '</span>';
+              } else {
+                echo '<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count" style="display:none;">0</span>';
               }
             ?>
           </a>
