@@ -259,10 +259,10 @@ $feedbacks = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="col-md-3 d-flex align-items-center justify-content-center">
           <div class="footer-section text-center text-md-start">
             <div class="fw-bold mb-1">Quick Links</div>
-            <a href="#home" class="footer-link">Home</a>
-            <a href="#about" class="footer-link">About</a>
-            <a href="#products" class="footer-link">Shop</a>
-            <a href="#contact" class="footer-link">Contact</a>
+           <a href="../index.php" class="footer-link">Home</a>
+          <a href="../views/about.php" class="footer-link">About</a>
+          <a href="../views/shop.php" class="footer-link">Shop</a>
+          <a href="../views/contact.php" class="footer-link">Contact</a>
           </div>
         </div>
         <div class="col-md-1 d-none d-md-flex align-items-center">
