@@ -18,6 +18,12 @@ include '../../config/db.php';
   if ($stmt) {
       $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
+
+  $orders = [];
+  $stmt = $conn->query('SELECT order_id, user_id, total_amount, status, order_date FROM orders ORDER BY order_id DESC');
+  if ($stmt) {
+      $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
 ?>
 
 
@@ -65,7 +71,7 @@ include '../../config/db.php';
                             <div class="card-body text-center">
                                 <i class="fas fa-shopping-cart fa-2x mb-2 text-warning"></i>
                                 <h5 class="card-title mb-1">Orders</h5>
-                                <p class="card-text text-muted">320</p>
+                                <p class="card-text text-muted"><?php echo count($orders); ?></p>
                             </div>
                         </div>
                     </div>
