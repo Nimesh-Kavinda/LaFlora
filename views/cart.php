@@ -92,7 +92,7 @@
                 <div class="cart-list" id="cartList">
                     <?php if (empty($cart_items)): ?>
                         <div class="text-center py-5">
-                            <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                            <i class="fas fa-cart-shopping fa-3x text-muted mb-3"></i>
                             <h4 class="text-muted">Your cart is empty</h4>
                             <a href="shop.php" class="btn btn-laflora mt-3">
                                 <i class="fas fa-shopping-bag me-2"></i>Continue Shopping
@@ -173,6 +173,14 @@
                         <a href="checkout.php" class="btn btn-laflora w-100 py-2 fs-5">
                             <i class="fa fa-credit-card me-2"></i>Checkout
                         </a>
+                    </div>
+                </div>
+            <?php else: ?>
+                <div class="col-lg-4">
+                    <div class="card shadow-sm border-0 p-4 text-center">
+                        <i class="fas fa-sad-tear fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">Your cart is empty</h5>
+                        <p class="text-secondary">Add items to your cart to see them here.</p>
                     </div>
                 </div>
             <?php endif; ?>
