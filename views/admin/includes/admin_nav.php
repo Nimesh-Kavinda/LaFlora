@@ -21,6 +21,9 @@ $current = basename($_SERVER['PHP_SELF']);
                             <a class="nav-link admin-nav-link<?php if($current=='orders.php') echo ' active'; ?>" href="./orders.php"><i class="fas fa-shopping-cart nav-icon me-2"></i> Orders</a>
                         </li>
                         <li class="nav-item mb-2">
+                            <a class="nav-link admin-nav-link<?php if($current=='feedbacks.php') echo ' active'; ?>" href="./feedbacks.php"><i class="fas fa-comments nav-icon me-2"></i> Feedbacks</a>
+                        </li>
+                        <li class="nav-item mb-2">
                             <a class="nav-link admin-nav-link<?php if($current=='users.php') echo ' active'; ?>" href="./users.php"><i class="fas fa-users nav-icon me-2"></i> Users</a>
                         </li>
                        <form action="../../controller/user_logout_process.php" method="post">
