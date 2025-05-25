@@ -1,3 +1,12 @@
+:root {
+  --laflora-primary: #e75480;
+  --laflora-secondary: #4caf50;
+  --laflora-bg: #fff8f9;
+  --laflora-dark: #222;
+}
+
+
+
 body {
             background: linear-gradient(to right, #ffcdd2, #e1f5fe);
             color: #333;

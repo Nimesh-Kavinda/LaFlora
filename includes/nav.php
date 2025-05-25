@@ -59,6 +59,9 @@ $current = basename($_SERVER['PHP_SELF']);
             ?>
           </a>
         </li>
+         <?php if (isset($_SESSION['name'])) { ?>
+           <li class="nav-link"><?php echo htmlspecialchars($_SESSION['name']); ?></li>
+         <?php } ?> 
         <?php
             if (isset($_SESSION['name'])) {
                 if ($_SESSION['user_type'] == 'admin') {
