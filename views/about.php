@@ -79,24 +79,33 @@
 <!-- Testimonial Section -->
 <section class="testimonial-section py-5">
   <div class="container">
-    <h2 class="text-center mb-5 testimonial-title">What Our Customers Say</h2>
+    <h2 class="text-center mb-5 testimonial-title">Our Core Values</h2>
     <div class="row justify-content-center g-4">
       <div class="col-md-4">
         <div class="testimonial-card p-4 h-100 text-center">
-          <p class="testimonial-text">“Absolutely stunning bouquets! The flowers were fresh and beautifully arranged. Delivery was super fast. Highly recommend LaFlora!”</p>
-          <div class="testimonial-name">— Priya S.</div>
+          <div class="mb-3">
+            <i class="fas fa-leaf fa-3x text-success"></i>
+          </div>
+          <h4 class="testimonial-name mb-3">Sustainability</h4>
+          <p class="testimonial-text">We are committed to eco-friendly practices, from sourcing locally grown flowers to using biodegradable packaging materials for all our deliveries.</p>
         </div>
       </div>
       <div class="col-md-4">
         <div class="testimonial-card p-4 h-100 text-center">
-          <p class="testimonial-text">“LaFlora made my anniversary extra special. The eco-friendly packaging and the freshness of the flowers were impressive!”</p>
-          <div class="testimonial-name">— Arjun M.</div>
+          <div class="mb-3">
+            <i class="fas fa-heart fa-3x text-danger"></i>
+          </div>
+          <h4 class="testimonial-name mb-3">Quality & Care</h4>
+          <p class="testimonial-text">Every bouquet is handcrafted with love and attention to detail. We ensure only the freshest, most beautiful flowers reach your loved ones.</p>
         </div>
       </div>
       <div class="col-md-4">
         <div class="testimonial-card p-4 h-100 text-center">
-          <p class="testimonial-text">“Great service and beautiful flowers every time. I love supporting a local, family-owned business!”</p>
-          <div class="testimonial-name">— Kavya R.</div>
+          <div class="mb-3">
+            <i class="fas fa-users fa-3x text-primary"></i>
+          </div>
+          <h4 class="testimonial-name mb-3">Community First</h4>
+          <p class="testimonial-text">As a family-owned business, we believe in supporting our local community and building lasting relationships with our customers and suppliers.</p>
         </div>
       </div>
     </div>
