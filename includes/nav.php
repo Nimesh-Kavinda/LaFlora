@@ -58,10 +58,7 @@ $current = basename($_SERVER['PHP_SELF']);
               }
             ?>
           </a>
-        </li>
-         <?php if (isset($_SESSION['name'])) { ?>
-           <li class="nav-link"><?php echo htmlspecialchars($_SESSION['name']); ?></li>
-         <?php } ?> 
+        </li> 
         <?php
             if (isset($_SESSION['name'])) {
                 if ($_SESSION['user_type'] == 'admin') {
@@ -78,6 +75,9 @@ $current = basename($_SERVER['PHP_SELF']);
                       </li>';
             }
         ?>
+         <?php if (isset($_SESSION['name'])) { ?>
+           <li class="nav-link username"><?php echo htmlspecialchars($_SESSION['name']); ?></li>
+         <?php } ?>
       </ul>
     </div>
   </div>

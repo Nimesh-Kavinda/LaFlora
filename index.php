@@ -427,6 +427,43 @@ $feedbacks = $stmt->fetchAll(PDO::FETCH_ASSOC);
     createDots();
     updateSlider();
     startAutoSlide();
+
+const urlParams = new URLSearchParams(window.location.search);
+
+// Check if login was successful
+if (urlParams.get('login') === 'success') {
+    Swal.fire({
+        icon: 'success',
+        title: 'Welcome!',
+        text: 'You have successfully logged in.',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+    }).then((result) => {
+        // Clean the URL by removing the login parameter
+        const url = new URL(window.location);
+        url.searchParams.delete('login');
+        window.history.replaceState({}, document.title, url.pathname + url.search);
+    });
+}
+
+// Check if logout was successful
+if (urlParams.get('logout') === 'success') {
+    Swal.fire({
+        icon: 'success',
+        title: 'Goodbye!',
+        text: 'You have been successfully logged out.',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+    }).then((result) => {
+        // Clean the URL by removing the logout parameter
+        const url = new URL(window.location);
+        url.searchParams.delete('logout');
+        window.history.replaceState({}, document.title, url.pathname + url.search);
+    });
+}
+
   </script>
 
 </body>

@@ -42,4 +42,26 @@
     </div>
   </div>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+// Check if login failed
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('login') === 'error') {
+    Swal.fire({
+        icon: 'error',
+        title: 'Login Failed!',
+        text: 'Invalid email or password. Please try again.',
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Try Again'
+    }).then((result) => {
+        // Clean the URL by removing the login parameter
+        const url = new URL(window.location);
+        url.searchParams.delete('login');
+        window.history.replaceState({}, document.title, url.pathname + url.search);
+    });
+}
+</script>
+
 </html>
