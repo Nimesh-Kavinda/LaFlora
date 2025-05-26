@@ -102,9 +102,6 @@ $feedbacks = $stmt->fetchAll(PDO::FETCH_ASSOC);
               ?>
             </a>
           </li>
-          <?php if (isset($_SESSION['name'])) { ?>
-           <li class="nav-link"><?php echo htmlspecialchars($_SESSION['name']); ?></li>
-         <?php } ?> 
           <?php
           if (isset($_SESSION['name'])) {
             if ($_SESSION['user_type'] == 'admin') {
@@ -121,6 +118,9 @@ $feedbacks = $stmt->fetchAll(PDO::FETCH_ASSOC);
                       </li>';
           }
           ?>
+           <?php if (isset($_SESSION['name'])) { ?>
+           <li class="nav-link username"><?php echo htmlspecialchars($_SESSION['name']); ?></li>
+         <?php } ?> 
         </ul>
       </div>
     </div>
@@ -150,10 +150,10 @@ $feedbacks = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <div class="col-md-6 text-center">
           <div class="image-slider-container" id="about-image-slider">
-            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80" class="image-slider-slide active" alt="Bouquet 1">
-            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=500&q=80" class="image-slider-slide" alt="Bouquet 2">
-            <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=500&q=80" class="image-slider-slide" alt="Bouquet 3">
-            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3c8b?auto=format&fit=crop&w=500&q=80" class="image-slider-slide" alt="Bouquet 4">
+            <img src="./public/img/home/flower_banner_01.jpg" class="image-slider-slide active" alt="Bouquet 1">
+            <img src="./public/img/home/flower_banner_02.jpg" class="image-slider-slide" alt="Bouquet 2">
+            <img src="./public/img/home/flower_banner_03.jpg" class="image-slider-slide" alt="Bouquet 3">
+            <img src="./public/img/home/flower_banner_04.jpg" class="image-slider-slide" alt="Bouquet 4">
             <div class="image-slider-dots">
               <span class="image-slider-dot active" data-slide="0"></span>
               <span class="image-slider-dot" data-slide="1"></span>

@@ -20,6 +20,22 @@ body {
   letter-spacing: 2px;
 }
 
+nav .username {
+  background-color: #4caf4fd1 !important;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 30px;
+  margin-left: 10px;
+}
+
+nav .username:hover{
+   background-color: #4caf4ff4 !important;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 30px;
+  margin-left: 10px;
+}
+
 .btn-laflora {
   background: var(--laflora-primary);
   color: #fff;
@@ -33,7 +49,8 @@ body {
 }
 
 .hero-section {
-  background: linear-gradient(120deg, #ffe0ec 0%, #e0ffe8 100%);
+  /* background: linear-gradient(120deg, #ffe0ec 0%, #e0ffe8 100%); */
+  background: url('../img/home/hero_cover.jpg') no-repeat center center/cover;
   padding: 5rem 0 3rem 0;
   text-align: center;
 }
@@ -43,7 +60,14 @@ body {
   font-family: 'Pacifico', cursive;
 }
 .hero-section p {
+  /* background-color: var(--laflora-bg); */
+  background-color: rgba(201, 123, 147, 0.404);
+  color: #4f4f4f !important;
+  padding: 8px;
+  border-radius: 50%;
+  font-weight: 400;
   font-size: 1.25rem;
+  font-family: 'Pacifico', cursive;
   color: var(--laflora-dark);
 }
 

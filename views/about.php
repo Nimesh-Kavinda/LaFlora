@@ -42,11 +42,11 @@
           <li><i class="fa-solid fa-people-group me-2" style="color:var(--laflora-secondary)"></i>Family-owned, community-focused</li>
           <li><i class="fa-solid fa-gift me-2" style="color:var(--laflora-secondary)"></i>Custom bouquets & gift combos</li>
         </ul>
-        <a href="../index.html#products" class="btn btn-laflora btn-lg">Shop Our Flowers</a>
+        <a href="./shop.php" class="btn btn-laflora btn-lg">Shop Our Flowers</a>
       </div>
       <div class="col-lg-6 d-flex align-items-center justify-content-center">
         <div class="about-img-wrapper about-img-single-wrapper w-100">
-          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="LaFlora Flowers" class="about-img about-img-animate about-img-single">
+          <img src="../public/img/about/about_cover.jpg" alt="LaFlora Flowers" class="about-img about-img-animate about-img-single">
         </div>
       </div>
     </div>
