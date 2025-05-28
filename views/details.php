@@ -186,7 +186,7 @@ if ($product_id > 0) {
                     </div>
                     <div class="col-md-6">
                         <h2 class="mb-3 product-title" style="color:var(--primary-color)"><?= htmlspecialchars($product['name']) ?></h2>
-                        <h4 class="mb-3 product-price" style="color:var(--accent-color)">₹<?= number_format($product['price'], 2) ?></h4>
+                        <h4 class="mb-3 product-price" style="color:var(--accent-color)">Rs <?= number_format($product['price'], 2) ?></h4>
                         <p class="mb-2 text-muted"><strong>Category:</strong> <?= htmlspecialchars($product['category_name'] ?? 'Uncategorized') ?></p>
                         <p class="mb-4 product-description"><?= nl2br(htmlspecialchars($product['description'])) ?></p>
                         
