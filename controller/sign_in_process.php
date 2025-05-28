@@ -20,7 +20,6 @@ if ($user && password_verify($password, $user['password'])) {
     header("Location: ../index.php?login=success");
     exit();
 } else {
-    echo "<script>alert('Invalid email or password!');</script>";
-    echo "<script>window.location.href = '../views/signin.php';</script>";
+    echo "<script>window.location.href = '../views/signin.php?login=error';</script>";
 }
 ?>
